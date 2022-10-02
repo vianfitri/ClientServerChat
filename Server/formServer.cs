@@ -69,7 +69,7 @@ namespace Server
                     /* add to dictionary, listbox and send userList  */
                     clientList.Add(username, client);
                     listBox1.Items.Add(username);
-                    updateUI("Connected to user " + username + " - " + client.Client.RemoteEndPoint);
+                    updateUI("Connected to user " + username + " - " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
                     announce(username + " Joined ", username, false);
 
                     await Task.Delay(1000).ContinueWith(t => sendUsersList());
@@ -149,8 +149,6 @@ namespace Server
                 return ms.ToArray();
             }
         }
-
-
 
         public void ServerReceive(TcpClient clientn, String username)
         {
